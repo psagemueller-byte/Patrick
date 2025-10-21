@@ -19,13 +19,13 @@ app.use(express.json());
 // API Routes
 
 // Get all users
-app.get('/api/users', (req, res) => {
+app.get('/api/users', (_req, res) => {
   const users = db.prepare('SELECT id, username, display_name, created_at FROM users').all();
   res.json(users);
 });
 
 // Get all news posts with user info
-app.get('/api/news', (req, res) => {
+app.get('/api/news', (_req, res) => {
   const posts = db.prepare(`
     SELECT
       news_posts.id,
@@ -102,7 +102,7 @@ app.post('/api/news/:postId/comments', (req, res) => {
 });
 
 // Get recent chat messages
-app.get('/api/chat/messages', (req, res) => {
+app.get('/api/chat/messages', (_req, res) => {
   const messages = db.prepare(`
     SELECT
       chat_messages.id,
